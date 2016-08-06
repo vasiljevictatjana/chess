@@ -32,7 +32,7 @@ public abstract class Tile {
 		if(piece != null)
 			return new OccupiedTile(tileCoordinate, piece);
 		else 
-			return EMPTY_TILES_CACHE.get(tileCoordinate);
+			return EMPTY_TILES_CACHE.get(tileCoordinate); //see in Board class createGameBoard
 	}
 	
 	public abstract Piece getPiece();
@@ -42,6 +42,11 @@ public abstract class Tile {
 		
 		private EmptyTile(final int coordinate) {
 			super(coordinate);
+		}
+		
+		@Override
+		public String toString(){
+			return "-";  //if it is not occupied print -
 		}
 
 		@Override
@@ -67,6 +72,14 @@ public abstract class Tile {
 			super(tileCoordinate);
 			this.pieceOnTile = pieceOnTile;
 		}
+		
+		@Override
+		public String toString(){
+			if(getPiece().getPieceAlliance().isBlack()){
+				return getPiece().toString().toLowerCase();
+			}else return getPiece().toString();                     //if it is occupied print it like piece
+		}
+		
 		@Override
 		public Piece getPiece() {
 			

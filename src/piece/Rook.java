@@ -11,12 +11,13 @@ import board.Move;
 import board.Tile;
 import board.Move.AttactMove;
 import packages.Alliance;
+import piece.Piece.PieceType;
 
 public class Rook extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_VECTOR_COORDINATES = {-8,-1,1,8};
 	
-	Rook(int piecePosition, Alliance pieceAlliance) {
+	public Rook( Alliance pieceAlliance, final int piecePosition) {
 		super(piecePosition, pieceAlliance);
 		
 	}
@@ -56,6 +57,11 @@ public class Rook extends Piece {
 			}
 		}
 		return Collections.unmodifiableList(legalMoves);
+	}
+	
+	@Override
+	public String toString(){
+		return PieceType.ROOK.toString();
 	}
 	
 	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){

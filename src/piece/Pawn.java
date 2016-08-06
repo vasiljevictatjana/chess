@@ -9,12 +9,13 @@ import board.Board;
 import board.BoardUtils;
 import board.Move;
 import packages.Alliance;
+import piece.Piece.PieceType;
 
 public class Pawn extends Piece {
 
 	private final static int[] CANDIDATE_MOVE_COORDINATE = {7,8,9,16}; //calculate horizontally in left for white and right for black; not vertically
 	
-	Pawn(final int piecePosition, final Alliance pieceAlliance) {
+	public Pawn(Alliance pieceAlliance, final int piecePosition) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -66,6 +67,11 @@ public class Pawn extends Piece {
 			}
 		}
 		return Collections.unmodifiableList(legalMoves);
+	}
+	
+	@Override
+	public String toString(){
+		return PieceType.PAWN.toString();
 	}
 
 }

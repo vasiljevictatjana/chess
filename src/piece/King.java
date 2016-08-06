@@ -10,13 +10,14 @@ import board.BoardUtils;
 import board.Move;
 import board.Tile;
 import packages.Alliance;
+import piece.Piece.PieceType;
 
 public class King extends Piece{
 
 	private final static int[] CANDIDATE_MOVE_COORDINATE = {-9,-8,-7,-1,1,7,8,9};
 	private static final int candidateOffset = 0; 
 	
-	King(final int piecePosition, final Alliance pieceAlliance) {
+	public King(Alliance pieceAlliance, final int piecePosition) {
 		super(piecePosition, pieceAlliance);
 	}
 
@@ -53,7 +54,12 @@ public class King extends Piece{
 		return Collections.unmodifiableList(legalMoves);
 	}
 	
-private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
+	@Override
+	public String toString(){
+		return PieceType.KING.toString();
+	}
+	
+	private static boolean isFirstColumnExclusion(final int currentPosition, final int candidateOffset){
 		
 		if (BoardUtils.FIRST_COLUMN[currentPosition] && 
 				(candidateOffset == -9 || candidateOffset == -1 || candidateOffset == 7 )) {
